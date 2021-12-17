@@ -25,7 +25,6 @@ code {
   width: 100vw;
   display: flex;
   align-items: center;
-  // justify-content: center;
   flex-direction: column;
   padding-top: 40vh;
 }
@@ -72,10 +71,14 @@ code {
     cursor: pointer;
     padding: 10px;
     border-bottom: 1px solid #51e8ff;
-    transition: all 0.3s;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
-      background-color: #ffffff;
+      background-color: #dd4d4d;
+    }
+    &.active {
+      background-color: #fff;
+      font-size: 17px;
     }
   }
 }
