@@ -10,7 +10,7 @@ function List({ countries }) {
     setSearchValue(e.target.value);
   };
 
-  // hide list on remove focus from input
+  // убрать список если на инпуте нет фокуса
   const hideList = (e) => {
     if (e.target.classList.contains('app')) {
       setVisibleList(false);
@@ -20,20 +20,19 @@ function List({ countries }) {
   const onKeyPressInInput = (e) => {
     setVisibleList(true);
 
-    // обработка ентера и проверка на наличие офильтрованного списка
-    if (e.keyCode === 13 && filteredCountries.length) {
+    if (e.key === 'Enter' && filteredCountries.length) {
       setSearchValue(suggestionsList.props.children[activeSugestion].props.children);
       setActiveSugestion(0);
       setVisibleList(false);
     }
 
     // обработка кнопки вверх
-    if (e.keyCode === 38 && filteredCountries.length) {
+    if (e.key === 'ArrowUp' && filteredCountries.length) {
       setActiveSugestion((previous) => previous - 1);
     }
 
     // обработка кнопки вниз
-    if (e.keyCode === 40 && filteredCountries.length) {
+    if (e.key === 'ArrowDown' && filteredCountries.length) {
       setActiveSugestion((previous) => previous + 1);
     }
   };
@@ -44,21 +43,14 @@ function List({ countries }) {
   });
 
   let suggestionsList;
-  let paragraphClassName = 'list__item';
 
   // проверка наличия списка после фильтрации
   if (filteredCountries.length) {
     suggestionsList = (
       <div className={visibleList ? 'list' : 'list invisible'}>
         {filteredCountries.map((country, index) => {
-          if (index === activeSugestion) {
-            paragraphClassName = 'list__item active';
-          } else {
-            paragraphClassName = 'list__item';
-          }
-
           return (
-            <p key={index} className={paragraphClassName}>
+            <p key={index} className={`list__item ${index === activeSugestion ? 'active' : ''}`}>
               {country.name.common}
             </p>
           );

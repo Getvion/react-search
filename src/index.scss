@@ -73,9 +73,6 @@ code {
     border-bottom: 1px solid #51e8ff;
     transition: all 0.3s ease-in-out;
 
-    &:hover {
-      background-color: #fff;
-    }
     &.active {
       background-color: #fff;
       font-size: 17px;
