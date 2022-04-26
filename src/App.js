@@ -8,10 +8,10 @@ import './index.scss';
 function App() {
   const [countries, setCountries] = useState([]);
 
-  const getCountries = () => {
-    axios.get('https://restcountries.com/v3.1/all').then((response) => {
-      return setCountries(response.data);
-    });
+  const getCountries = async () => {
+    await axios
+      .get('https://restcountries.com/v3.1/all')
+      .then((response) => setCountries(response.data));
   };
 
   useEffect(() => {
